@@ -1,32 +1,39 @@
 # Keystroke Behavioral Authentication System
 
-A beginner-friendly Python application that analyzes typing behavior and compares a user's typing pattern with a saved behavioral profile.
+A beginner-friendly Python application that analyzes typing behavior and uses keystroke timing patterns for basic behavioral authentication.
 
 ## Overview
 
-This project explores keystroke dynamics by measuring typing time and using it to create a simple behavioral profile.
+Keystroke dynamics is a behavioral biometric technique that studies the way a person types.
 
-The system collects typing samples, calculates basic statistical features, and compares a new typing attempt with the saved profile.
+This project creates a basic typing profile and compares a new typing attempt against that profile.
+
+The system currently analyzes:
+
+- Total typing time
+- Key hold time
+- Flight time between keystrokes
+- Typing-time variation
 
 ## Features
 
 - Collects multiple typing samples
-- Measures typing time
 - Creates a personal typing profile
-- Calculates average typing time
-- Calculates minimum and maximum typing time
-- Calculates standard deviation
-- Stores typing data in CSV format
-- Tests new typing attempts
-- Performs a simple behavioral comparison
-- Provides an authentication result
+- Stores typing measurements in CSV format
+- Measures total typing time
+- Measures average key hold time
+- Measures average flight time
+- Calculates typing-time statistics
+- Compares a new typing attempt with the saved profile
+- Provides a basic authentication result
 
 ## Technologies
 
 - Python
+- Tkinter
 - CSV
 - Statistics
-- Basic behavioral biometrics
+- Behavioral Biometrics
 
 ## Project Structure
 
@@ -41,4 +48,8 @@ keystroke-dynamics/
 ├── keystroke_auth.py
 ├── authenticate.py
 ├── typing_test.py
-└── main.py
+├── keystroke_features.py
+├── keystroke_capture.py
+├── main.py
+├── requirements.txt
+└── .gitignore
