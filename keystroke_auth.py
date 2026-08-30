@@ -1,82 +1,78 @@
 import time
-import csv
 import statistics
 
-DATA_FILE = "data/sample_typing_data.csv"
-def load_baseline():
-    """Load previous typing times and calculate the average."""
-    typing_times = []
-    try:
-        with open(DATA_FILE, "r") as file:
-            reader = csv.DictReader(file)
 
-            for row in reader:
-                typing_times.append(float(row["typing_time"]))
-
-    except FileNotFoundError:
-        print("No typing data found.")
-        return 5.0
-
-    if not typing_times:
-        return 5.0
-
-    return statistics.mean(typing_times)
+SENTENCE = "The quick brown fox jumps over the lazy dog"
+NUMBER_OF_SAMPLES = 5
 
 
-def collect_typing_data():
-    print("Keystroke Behavioral Authentication")
-    sentence = "The quick brown fox jumps over the lazy dog"
-    print("\nType the following sentence:")
-    print(sentence)
+def collect_sample(sample_number):
+    print(f"\nSample {sample_number}/{NUMBER_OF_SAMPLES}")
+    print(SENTENCE)
 
-    input("\nPress Enter when you are ready...")
+    input("Press Enter when you are ready...")
 
-    print("\nStart typing:")
+    print("Start typing:")
 
     start_time = time.time()
-
     typed_text = input()
-
     end_time = time.time()
 
     typing_time = end_time - start_time
 
-    return typed_text, typing_time
-
-
-def analyze_typing(typed_text, typing_time, baseline_time):
-
-    expected_text = "The quick brown fox jumps over the lazy dog"
-
-    print("\nResults")
-    print(f"Typing time: {typing_time:.2f} seconds")
-    print(f"Baseline time: {baseline_time:.2f} seconds")
-
-    if typed_text != expected_text:
+    if typed_text != SENTENCE:
         print("Text does not match.")
+        return None
+
+    print(f"Typing time: {typing_time:.2f} seconds")
+
+    return typing_time
+
+
+def collect_typing_profile():
+    print("Keystroke Behavioral Authentication")
+    print("-----------------------------------")
+    print("Let's create your typing profile.")
+    print(f"We will collect {NUMBER_OF_SAMPLES} samples.")
+
+    samples = []
+
+    for sample_number in range(1, NUMBER_OF_SAMPLES + 1):
+        typing_time = collect_sample(sample_number)
+
+        if typing_time is not None:
+            samples.append(typing_time)
+
+    return samples
+
+
+def analyze_profile(samples):
+
+    if not samples:
+        print("\nNo valid samples were collected.")
         return
 
-    difference = abs(typing_time - baseline_time)
+    average = statistics.mean(samples)
+    minimum = min(samples)
+    maximum = max(samples)
 
-    print(f"Difference from baseline: {difference:.2f} seconds")
+    print("\nYour Typing Profile")
+    print("-------------------")
+    print(f"Valid samples: {len(samples)}")
+    print(f"Average typing time: {average:.2f} seconds")
+    print(f"Minimum typing time: {minimum:.2f} seconds")
+    print(f"Maximum typing time: {maximum:.2f} seconds")
 
-    if difference <= 2:
-        print("\nResult: Typing behavior is similar to the baseline.")
-    else:
-        print("\nResult: Typing behavior is noticeably different.")
+    if len(samples) > 1:
+        variation = statistics.stdev(samples)
+        print(f"Standard deviation: {variation:.2f} seconds")
 
 
 def main():
 
-    baseline_time = load_baseline()
+    samples = collect_typing_profile()
 
-    typed_text, typing_time = collect_typing_data()
-
-    analyze_typing(
-        typed_text,
-        typing_time,
-        baseline_time
-    )
+    analyze_profile(samples)
 
 
 if __name__ == "__main__":
