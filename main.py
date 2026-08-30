@@ -1,37 +1,61 @@
-from typing_test import run_typing_test
-from authenticate import load_profile, calculate_profile, compare_typing
+from authenticate import (
+    load_profile,
+    calculate_profile,
+    compare_typing
+)
+
+from keystroke_capture import run_typing_test
 
 
 def main():
+
+    print("===================================")
     print("   Keystroke Authentication System")
-    # Load the saved typing profile
+    print("===================================")
+
+    # Load saved typing profile
     profile = load_profile()
 
     if not profile:
         print("No typing profile found.")
         return
 
-    # Calculate the user's normal typing behavior
+    # Calculate baseline statistics
     average, variation = calculate_profile(profile)
 
     print("\nSaved Typing Profile")
+    print("--------------------")
     print(f"Average typing time: {average:.2f} seconds")
     print(f"Standard deviation: {variation:.2f} seconds")
 
-    # Collect a new typing attempt
-    new_time = run_typing_test()
+    print("\nOpening keystroke typing test...")
 
-    if new_time is None:
-        print("\nAuthentication stopped because the text did not match.")
+    # Run the keystroke capture window
+    result = run_typing_test()
+
+    if result is None:
+        print("\nTyping test was not completed.")
         return
 
-    # Compare the new attempt with the saved profile
+    new_time = result["typing_time"]
+
+    print("\nNew Typing Attempt")
+    print("------------------")
+    print(f"Typing time: {new_time:.2f} seconds")
+    print(f"Average hold time: {result['average_hold']:.4f} seconds")
+    print(f"Average flight time: {result['average_flight']:.4f} seconds")
+
+    # Compare with saved profile
     authenticated = compare_typing(
         new_time,
         average,
         variation
     )
+
+    print("\n===================================")
     print("       Authentication Result")
+    print("===================================")
+
     if authenticated:
         print("Typing behavior matches the profile.")
         print("Result: AUTHENTICATED")
