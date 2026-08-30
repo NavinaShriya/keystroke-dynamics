@@ -2,15 +2,10 @@ import time
 import csv
 import statistics
 
-
 DATA_FILE = "data/sample_typing_data.csv"
-
-
 def load_baseline():
     """Load previous typing times and calculate the average."""
-
     typing_times = []
-
     try:
         with open(DATA_FILE, "r") as file:
             reader = csv.DictReader(file)
@@ -30,10 +25,7 @@ def load_baseline():
 
 def collect_typing_data():
     print("Keystroke Behavioral Authentication")
-    print("-----------------------------------")
-
     sentence = "The quick brown fox jumps over the lazy dog"
-
     print("\nType the following sentence:")
     print(sentence)
 
@@ -57,8 +49,6 @@ def analyze_typing(typed_text, typing_time, baseline_time):
     expected_text = "The quick brown fox jumps over the lazy dog"
 
     print("\nResults")
-    print("-------")
-
     print(f"Typing time: {typing_time:.2f} seconds")
     print(f"Baseline time: {baseline_time:.2f} seconds")
 
