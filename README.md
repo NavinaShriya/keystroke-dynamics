@@ -8,7 +8,7 @@ Keystroke dynamics is a behavioral biometric technique that studies the way a pe
 
 This project creates a basic typing profile and compares a new typing attempt against that profile.
 
-The system currently analyzes:
+The system analyzes:
 
 - Total typing time
 - Key hold time
@@ -18,14 +18,14 @@ The system currently analyzes:
 ## Features
 
 - Collects multiple typing samples
-- Creates a personal typing profile
-- Stores typing measurements in CSV format
+- Creates a typing profile
+- Stores sample measurements in CSV format
 - Measures total typing time
 - Measures average key hold time
 - Measures average flight time
 - Calculates typing-time statistics
 - Compares a new typing attempt with the saved profile
-- Provides a basic authentication result
+- Provides an authentication result
 
 ## Technologies
 
@@ -35,21 +35,37 @@ The system currently analyzes:
 - Statistics
 - Behavioral Biometrics
 
-## Project Structure
+## How It Works
 
 ```text
-keystroke-dynamics/
-│
-├── data/
-│   ├── sample_typing_data.csv
-│   └── typing_profile.csv
-│
-├── README.md
-├── keystroke_auth.py
-├── authenticate.py
-├── typing_test.py
-├── keystroke_features.py
-├── keystroke_capture.py
-├── main.py
-├── requirements.txt
-└── .gitignore
+Typing Samples
+      |
+      v
+Typing Profile
+      |
+      v
+Statistical Analysis
+      |
+      v
+New Typing Attempt
+      |
+      v
+Keystroke Capture
+      |
+      +-------------------+
+      |                   |
+      v                   v
+ Hold Time          Flight Time
+      |                   |
+      +---------+---------+
+                |
+                v
+       Profile Comparison
+                |
+          +-----+-----+
+          |           |
+          v           v
+      Similar       Different
+          |           |
+          v           v
+   AUTHENTICATED   NOT AUTHENTICATED
