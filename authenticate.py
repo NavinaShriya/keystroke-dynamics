@@ -48,8 +48,6 @@ def compare_typing(new_time, average, variation):
 def main():
 
     print("Keystroke Authentication Test")
-    print("-----------------------------")
-
     profile = load_profile()
 
     average, variation = calculate_profile(profile)
@@ -72,8 +70,6 @@ def main():
     )
 
     print("\nAuthentication Result")
-    print("---------------------")
-
     if is_similar:
         print("Typing behavior is similar to the profile.")
         print("Result: AUTHENTICATED")
