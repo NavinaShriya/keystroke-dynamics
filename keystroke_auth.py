@@ -31,7 +31,6 @@ def collect_sample(sample_number):
 
 def collect_typing_profile():
     print("Keystroke Behavioral Authentication")
-    print("-----------------------------------")
     print("Let's create your typing profile.")
     print(f"We will collect {NUMBER_OF_SAMPLES} samples.")
 
@@ -57,7 +56,6 @@ def analyze_profile(samples):
     maximum = max(samples)
 
     print("\nYour Typing Profile")
-    print("-------------------")
     print(f"Valid samples: {len(samples)}")
     print(f"Average typing time: {average:.2f} seconds")
     print(f"Minimum typing time: {minimum:.2f} seconds")
