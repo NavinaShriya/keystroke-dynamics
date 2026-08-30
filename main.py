@@ -8,10 +8,7 @@ from keystroke_capture import run_typing_test
 
 
 def main():
-
-    print("===================================")
     print("   Keystroke Authentication System")
-    print("===================================")
 
     # Load saved typing profile
     profile = load_profile()
@@ -24,7 +21,6 @@ def main():
     average, variation = calculate_profile(profile)
 
     print("\nSaved Typing Profile")
-    print("--------------------")
     print(f"Average typing time: {average:.2f} seconds")
     print(f"Standard deviation: {variation:.2f} seconds")
 
@@ -40,7 +36,6 @@ def main():
     new_time = result["typing_time"]
 
     print("\nNew Typing Attempt")
-    print("------------------")
     print(f"Typing time: {new_time:.2f} seconds")
     print(f"Average hold time: {result['average_hold']:.4f} seconds")
     print(f"Average flight time: {result['average_flight']:.4f} seconds")
@@ -51,10 +46,8 @@ def main():
         average,
         variation
     )
-
-    print("\n===================================")
     print("       Authentication Result")
-    print("===================================")
+
 
     if authenticated:
         print("Typing behavior matches the profile.")
