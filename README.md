@@ -1,41 +1,44 @@
 # Keystroke Behavioral Authentication System
 
-A beginner-friendly Python application that analyzes typing patterns and detects unusual changes in typing behavior.
+A beginner-friendly Python application that analyzes typing behavior and compares a user's typing pattern with a saved behavioral profile.
 
-## Technologies
+## Overview
 
-Python | Behavioral Biometrics | Anomaly Detection
+This project explores keystroke dynamics by measuring typing time and using it to create a simple behavioral profile.
+
+The system collects typing samples, calculates basic statistical features, and compares a new typing attempt with the saved profile.
 
 ## Features
 
-- Behavioral authentication using keystroke dynamics
-- Hold-time and flight-time feature extraction
-- User behavioral data processing
-- Simple baseline comparison
-- Anomaly detection based on typing patterns
+- Collects multiple typing samples
+- Measures typing time
+- Creates a personal typing profile
+- Calculates average typing time
+- Calculates minimum and maximum typing time
+- Calculates standard deviation
+- Stores typing data in CSV format
+- Tests new typing attempts
+- Performs a simple behavioral comparison
+- Provides an authentication result
 
-## How It Works
+## Technologies
 
-The user types a fixed phrase several times during training.
+- Python
+- CSV
+- Statistics
+- Basic behavioral biometrics
 
-The program measures timing features such as:
+## Project Structure
 
-- Dwell time — how long a key is held
-- Flight time — time between keystrokes
-- Typing speed
-
-These measurements are used to create a basic behavioral profile.
-
-A later typing attempt is compared with this profile to determine whether the typing pattern is similar or significantly different.
-
-## Project Status
-
-Beginner implementation in progress.
-
-## Future Improvements
-
-- Store anonymized user profiles
-- Add more behavioral features
-- Improve anomaly scoring
-- Add machine-learning classification
-- Evaluate false acceptance and false rejection rates
+```text
+keystroke-dynamics/
+│
+├── data/
+│   ├── sample_typing_data.csv
+│   └── typing_profile.csv
+│
+├── README.md
+├── keystroke_auth.py
+├── authenticate.py
+├── typing_test.py
+└── main.py
