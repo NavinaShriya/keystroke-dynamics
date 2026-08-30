@@ -6,8 +6,6 @@ SENTENCE = "The quick brown fox jumps over the lazy dog"
 
 def run_typing_test():
     print("Keystroke Typing Test")
-    print("---------------------")
-
     print("\nType the following sentence:")
     print(SENTENCE)
 
